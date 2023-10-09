@@ -190,6 +190,7 @@ odd:
 out:
 	or	t3,	t3,	t5		# sticky | odd
 	and	t3,	t3,	t4		# rnd & (sticky | odd)
+ 	srli	a5,	a5,	1		# r = r >> 1
 	or	a5,	a5,	t3		# r = r >> 1 + (rnd & (sticky | odd))
 	li	t6,	0x7fffff		# load mask 0x7fffff
 	and	a5,	a5, 	t6		# r & 0x7fffff
