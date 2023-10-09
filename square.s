@@ -142,19 +142,19 @@ division:
  	andi	t0,	t0,	0xff		# (ia >> 23) & 0xff expa
 	srli	t1,	a4,	23		# ib >> 23
 	andi	t1,	t1,	0xff		# (ib >> 23) & 0xff expb
-	sub		t0,	t0,	t1	# (expa - expb)
+	sub	t0,	t0,	t1		# (expa - expb)
 	addi	t0,	t0,	127 		# expout = expa -expb +127
-	li		t6,	0x7fffff	# load mask 0x7fffff
-	and		t1,	a3,	t6	# ia & 0x7fffff siga
-	and		t2,	a4,	t6	# ib & 0x7fffff sigb
-	li		t6,	0x800000	# load mask 0x7fffff
-	or		t1,	t1, t6 		# siga = (ia & 0x7fffff ) | 0x800000
-	or		t2,	t2, t6		# sigb = (ib & 0x7fffff ) | 0x800000
+	li	t6,	0x7fffff		# load mask 0x7fffff
+	and	t1,	a3,	t6		# ia & 0x7fffff siga
+	and	t2,	a4,	t6		# ib & 0x7fffff sigb
+	li	t6,	0x800000		# load mask 0x7fffff
+	or	t1,	t1, 	t6 		# siga = (ia & 0x7fffff ) | 0x800000
+	or	t2,	t2, 	t6		# sigb = (ib & 0x7fffff ) | 0x800000
 div1:
 	bge	t1,	t2,	div2 		# siga > sigb go to div2
 	slli	t1,	t1,	1	 	# siga = siga << 1
 	addi	t0,	t0,	-1 		# expout--
-	mv		a5,	x0		# r = 0
+	mv	a5,	x0			# r = 0
 	beq	x0,	x0,	div1		# back to div1
 div2:
 	mv	t3,	x0			# i = 0
@@ -183,8 +183,8 @@ neq:
 round:
 	andi	t4,	a5,	1		# rnd = (r & 1)
 	andi	t5,	a5,	2		# r & 2
-	bne		t5,	x0,	odd	# (r & 2) != 0 odd
-	beq		x0,	x0,	out	# go to out 	 
+	bne	t5,	x0,	odd		# (r & 2) != 0 odd
+	beq	x0,	x0,	out		# go to out 	 
 odd:
 	addi	t5,	x0,	1		# (r & 2) != 0 is true
 out:
@@ -195,8 +195,8 @@ out:
 	and	a5,	a5, 	t6		# r & 0x7fffff
 	andi	t0,	t0,	0xff		# expout & 0xff
 	slli	t0,	t0, 23			# expout = expout << 23
-	or		a5, a5, t0		# out= ((expout & 0xff) << 23) | (sigout)
-	jr 		ra			# back to main
+	or	a5, a5, t0			# out= ((expout & 0xff) << 23) | (sigout)
+	jr 	ra				# back to main
  
 #///////////////////addition
 #a3= a
