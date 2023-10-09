@@ -3,14 +3,6 @@
 #define iteration 10
 int lz, lzc, i;
 float ans;
-void print_binary(uint64_t x) {
-    for (int i = 31; i >= 0; i--) {
-        putchar((x & (1ULL << i)) ? '1' : '0');
-    
-    }
-    printf("\n");
-}
-
 int count_leading_zeros(uint32_t x)
 {
     x |= (x >> 1);
@@ -28,17 +20,9 @@ int count_leading_zeros(uint32_t x)
     return (32 - (x & 0x7f));
 }
 float uint_to_float(uint32_t u){
-    //unsigned int exp=127+31-count_leading_zeros(u);
     int c = count_leading_zeros(u);
     unsigned int exp=127+31-c;
     u <<= (c-8);
-    // printf("clzu%d\n",count_leading_zeros(u));
-    // int t=0;
-    // while ((u & (1 << 23)) == 0)
-    // { 
-    //     u <<= 1;
-    //     t++;
-    // }
     uint32_t flt= (exp << 23) | (u & 0x7FFFFF);
     return * (float *) &flt;
 }
@@ -72,12 +56,11 @@ float division(float a,float b){
         }
         siga = siga << 1 ;
     }
-    // sticky to see 
-    // sticky =(siga != 0);
-    // rnd =(r & 1);
-    // odd =(r & 2) != 0;
-    // r=(r>>1)+ (rnd & (sticky | odd));
-    r = r>>1;
+    // rounded
+    sticky =(siga != 0);
+    rnd =(r & 1);
+    odd =(r & 2) != 0;
+    r=(r>>1)+ (rnd & (sticky | odd));
     int32_t sigout=r & 0x7fffff;
     int32_t out= ((expout & 0xff) << 23) | (sigout);
     return *(float *) &out;
@@ -121,11 +104,8 @@ int main(){
     for (i = 0 ; i < iteration ; i++){
         printf("---------------%d-----------------\n",i);
         t = division(r,ans);
-        printf("t1= %f\n",t);
         t = addition(t,ans);
-        printf("t2= %f\n",t);
         t = division(t,2);
-        printf("t3= %f\n",t);
         ans=t;
         if(ans == c){
             break;
