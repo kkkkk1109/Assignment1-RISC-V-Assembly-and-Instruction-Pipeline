@@ -58,7 +58,6 @@ float division(float a,float b){
         }
         siga = siga << 1 ;
     }
-    sticky to see 
     sticky =(siga != 0);
     rnd =(r & 1);
     odd =(r & 2) != 0;
