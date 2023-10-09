@@ -194,8 +194,8 @@ out:
 	li	t6,	0x7fffff		# load mask 0x7fffff
 	and	a5,	a5, 	t6		# r & 0x7fffff
 	andi	t0,	t0,	0xff		# expout & 0xff
-	slli	t0,	t0, 23			# expout = expout << 23
-	or	a5, a5, t0			# out= ((expout & 0xff) << 23) | (sigout)
+	slli	t0,	t0, 	23		# expout = expout << 23
+	or	a5, 	a5, 	t0		# out= ((expout & 0xff) << 23) | (sigout)
 	jr 	ra				# back to main
  
 #///////////////////addition
