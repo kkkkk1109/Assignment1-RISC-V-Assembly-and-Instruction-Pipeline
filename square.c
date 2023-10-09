@@ -103,7 +103,6 @@ int main(){
     ans=uint_to_float(r >> lzc);
     float t,c;
     for (i = 0 ; i < iteration ; i++){
-        printf("---------------%d-----------------\n",i);
         t = division(r,ans);
         t = addition(t,ans);
         t = division(t,2);
