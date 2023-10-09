@@ -164,7 +164,8 @@ next:
 	slli	t1,	t1,	1		  # siga = siga << 1
 	addi	t3,	t3,	1	    # i = i + 1
 	beq	  x0,	x0, shift_sub		# back to shift_sub
-  srli  a5, a5, 1     # r = r  >> 1
+ div3:
+  	srli  a5, a5, 1     # r = r  >> 1
 	li	  t6,	0x7fffff		# load mask 0x7fffff
 	and	  a5,	a5, t6		# r & 0x7fffff
 	andi	t0,	t0,	0xff		# expout & 0xff
