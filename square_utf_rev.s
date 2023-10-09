@@ -1,4 +1,4 @@
-.data
+	.data
 intput:	.word 500
 str1: .string "After "
 str2: .string " iterations, the square root of "
