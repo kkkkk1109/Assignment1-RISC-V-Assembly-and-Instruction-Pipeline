@@ -25,9 +25,6 @@ float uint_to_float(uint32_t u){
      { 
          u <<= 1;
      }
-    //int c = count_leading_zeros(u);
-    //unsigned int exp=127+31-c;
-    //u <<= (c-8);
     uint32_t flt= (exp << 23) | (u & 0x7FFFFF);
     return * (float *) &flt;
 }
