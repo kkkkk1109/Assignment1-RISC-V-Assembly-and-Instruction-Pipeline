@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
-#define iteration 10
+#define iteration 5
 int lz, lzc, i;
 float ans;
 int count_leading_zeros(uint32_t x)
